@@ -1,0 +1,16 @@
+channels:
+- pytorch
+- nvidia/label/cuda-12.1.0
+- conda-forge
+- defaults
+dependencies:
+  - pip
+  - python=3.10.*
+  - matplotlib
+  - cuda-toolkit=12.1
+  - pytorch
+  - torchvision
+  - pytorch-cuda=12.1
+  - pip:
+    - kaggle
+name: pytorch-gpu-nvidia

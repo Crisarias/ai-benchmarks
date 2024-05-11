@@ -1,4 +1,4 @@
-# AI Benchmark
+# AI Benchmarks
 
 This works with latest CUDA 12.4 at the moment of writing this. Tested on Ubuntu 22.04
 
@@ -26,6 +26,8 @@ conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
 ```
 
+# AI Bench Alpha
+
 ## Get Started Generic GPU with DirectML Support
 
 To create environment follow this steps:
@@ -33,7 +35,7 @@ To create environment follow this steps:
 1. Create virtual env.
 
 ```bash
-conda env create -v -f env-wsl2-directml.yml
+conda env create -v -f env-wsl2-tf-directml.yml
 ```
 
 2. Activate env
@@ -51,20 +53,18 @@ python run_ai_bench.py
 
 To create environment follow this steps:
 
-1. Install miniconda if not installed:
-
-2. Create virtual env.
+1. Create virtual env.
 
 ```bash
-conda env create -v -f env-wsl2-nvidia.yml
+conda env create -v -f env-wsl2-tf-nvidia.yml
 ```
 
-3. Activate env
+2. Activate env
 ```bash
 conda activate tensorflow-gpu-nvidia
 ```
 
-4. Run AI Benchmark
+3. Run AI Benchmark
 
 ```bash
 python run_ai_bench.py
@@ -85,3 +85,34 @@ or
 conda deactivate
 conda env remove -y --name tensorflow-gpu-nvidia
 ```
+
+# RESNET 50 with CIAT10 Data set
+
+## Get Started NVIDIA GPU
+
+To create environment follow this steps:
+
+1. Create virtual env.
+
+```bash
+conda env create -v -f env-wsl2-pytorch-nvidia.yml
+```
+
+3. Activate env
+```bash
+conda activate pytorch-gpu-nvidia
+```
+
+4. Run Training and
+
+Based on https://lambdalabs.com/blog/multi-node-pytorch-distributed-training-guide. Find best batch size and epoch
+
+```bash
+cd LambdaLabsML-examples/pytorch/distributed/resnet
+torchrun --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=127.0.0.1 --master_port=1234 main.py --backend=nccl --batch_size=1024 --num_epochs=50 --arch=resnet50
+```
+
+## Notes
+
+Profiling python -m cProfile myscript.py
+

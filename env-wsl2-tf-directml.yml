@@ -1,0 +1,13 @@
+channels:
+- pytorch
+- conda-forge
+- defaults
+dependencies:
+  - pip
+  - python=3.10.*
+  - numpy=1.23
+  - pip:
+    - tensorflow-cpu
+    - tensorflow-directml-plugin
+    - ai_benchmark
+name: tensorflow-gpu
