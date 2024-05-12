@@ -117,13 +117,13 @@ Based on https://lambdalabs.com/blog/multi-node-pytorch-distributed-training-gui
 
 ```bash
 cd LambdaLabsML-examples/pytorch/distributed/resnet
-torchrun --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=127.0.0.1 --master_port=1234 main.py --backend=nccl --batch_size=1024 --num_epochs=50 --arch=resnet50
+torchrun --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=10.1.96.5 --master_port=1234 main.py --backend=nccl --batch_size=1024 --num_epochs=50 --arch=resnet50
 ```
 
 5. Run training distributed
 
 ```bash
-mpirun -env MASTER_ADDR=104.171.200.62b -env MASTER_PORT=1234 -envall -bind-to none -map-by slot python3 main.py --backend=nccl --use_syn --batch_size=1024 --num_epochs=50 --arch=resnet50
+mpirun -env MASTER_ADDR=10.1.96.5 -env MASTER_PORT=1234 -envall -bind-to none -map-by slot python3 main.py --backend=nccl --use_syn --batch_size=1024 --num_epochs=50 --arch=resnet50
 ```
 ## Notes
 
