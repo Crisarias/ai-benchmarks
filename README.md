@@ -111,7 +111,7 @@ conda activate pytorch-gpu-nvidia
 python3 -c "import torch; print(torch.cuda.is_available())"
 ```
 
-4. Run Training and
+4. Run Training on one node
 
 Based on https://lambdalabs.com/blog/multi-node-pytorch-distributed-training-guide. Find best batch size and epoch
 
@@ -120,6 +120,11 @@ cd LambdaLabsML-examples/pytorch/distributed/resnet
 torchrun --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=127.0.0.1 --master_port=1234 main.py --backend=nccl --batch_size=1024 --num_epochs=50 --arch=resnet50
 ```
 
+5. Run training distributed
+
+```bash
+mpirun -env MASTER_ADDR=104.171.200.62b -env MASTER_PORT=1234 -envall -bind-to none -map-by slot python3 main.py --backend=nccl --use_syn --batch_size=1024 --num_epochs=50 --arch=resnet50
+```
 ## Notes
 
 Profiling python -m cProfile myscript.py
