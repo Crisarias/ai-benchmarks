@@ -62,6 +62,12 @@ conda env create -v -f env-wsl2-tf-nvidia.yml
 2. Activate env
 ```bash
 conda activate tensorflow-gpu-nvidia
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
+# Verify GPUs available
+python3 -c "import os; os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'; import tensorflow as tf; print('Num GPUs Available: ', len(tf.config.list_physical_devices('GPU')))"
+
 ```
 
 3. Run AI Benchmark
@@ -101,6 +107,8 @@ conda env create -v -f env-wsl2-pytorch-nvidia.yml
 3. Activate env
 ```bash
 conda activate pytorch-gpu-nvidia
+# Verify GPUs available
+python3 -c "import torch; print(torch.cuda.is_available())"
 ```
 
 4. Run Training and
