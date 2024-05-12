@@ -13,7 +13,7 @@ import random
 import numpy as np
 import time
 import importlib
-import cProfile
+from datetime import datetime
 
 if "LOCAL_RANK" in os.environ:
     # Environment variables set by torch.distributed.launch or torchrun
@@ -289,4 +289,13 @@ def main():
 
 
 if __name__ == "__main__":
-    cProfile.run("main()")
+    start_now = datetime.now()
+    start_current_time = start_now.strftime("%H:%M:%S")
+    print("Start Time =", start_current_time)
+    main()
+    end_now = datetime.now()
+    end_current_time = end_now.strftime("%H:%M:%S")
+    print("End Time =", end_current_time)
+    diff = end_now-start_now
+    diff_minutes = diff.total_seconds() / 60
+    print("Execution time in minutes =", diff_minutes)

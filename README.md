@@ -120,10 +120,10 @@ cd LambdaLabsML-examples/pytorch/distributed/resnet
 torchrun --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=10.1.96.5 --master_port=1234 main.py --backend=nccl --batch_size=1024 --num_epochs=50 --arch=resnet50
 ```
 
-5. Run training distributed
+5. Run training distributed OpenMPI
 
 ```bash
-mpirun -env MASTER_ADDR=10.1.96.5 -env MASTER_PORT=1234 -envall -bind-to none -map-by slot python3 main.py --backend=nccl --use_syn --batch_size=1024 --num_epochs=50 --arch=resnet50
+/opt/.openmpi/bin/mpirun -hostfile /mnt/beegfs/hosts.openmpi -x MASTER_ADDR=10.1.96.5 -x MASTER_PORT=1234 -x PATH -bind-to none -map-by slot -mca pml ob1 -mca btl ^openib python3 main.py --backend=nccl --use_syn --batch_size=1024 --num_epochs=50 --arch=resnet50
 ```
 ## Notes
 
