@@ -11,6 +11,4 @@ dependencies:
   - pytorch
   - torchvision
   - pytorch-cuda=12.1
-  - pip:
-    - kaggle
 name: pytorch-gpu-nvidia
