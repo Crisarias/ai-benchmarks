@@ -221,11 +221,11 @@ def main():
             dataset=train_set,
             batch_size=batch_size,
             sampler=train_sampler,
-            num_workers=8,
+            num_workers=6,
         )
         # Test loader does not have to follow distributed sampling strategy
         test_loader = DataLoader(
-            dataset=test_set, batch_size=128, shuffle=False, num_workers=8
+            dataset=test_set, batch_size=128, shuffle=False, num_workers=6
         )
 
     criterion = nn.CrossEntropyLoss()
