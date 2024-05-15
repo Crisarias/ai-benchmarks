@@ -230,7 +230,7 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(
-        ddp_model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=1e-5
+        ddp_model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=1e-2
     )
 
     # Loop over the dataset multiple times
