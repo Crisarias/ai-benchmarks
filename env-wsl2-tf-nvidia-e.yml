@@ -1,0 +1,11 @@
+channels:
+- pytorch
+- nvidia/label/cuda-12.2.0
+- conda-forge
+- defaults
+dependencies:
+  - pip
+  - python=3.10.*
+  - numpy=1.23
+  - cuda-toolkit=12.2
+name: tensorflow-gpu-nvidia
