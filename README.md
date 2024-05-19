@@ -111,6 +111,8 @@ conda activate pytorch-gpu-nvidia
 python3 -c "import torch; print(torch.cuda.is_available())"
 ```
 
+conda env remove -y --name pytorch-gpu-nvidia
+
 4. Run Training on one node
 
 Based on https://lambdalabs.com/blog/multi-node-pytorch-distributed-training-guide. Find best batch size and epoch
